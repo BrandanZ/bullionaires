@@ -48,12 +48,19 @@ body {
 
 header {
   box-shadow: var(--header-shadow);
+  top: 0;
+  position: sticky;
+  z-index: 1000;
+  background-color: #00163f;
+  width: 100%;
 }
 
 header .container {
+  width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 2rem;
 }
 
 .menu {
