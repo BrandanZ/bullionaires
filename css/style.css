@@ -5,9 +5,9 @@
 /* GLOBAL STYLES */
 
 :root {
-  --font-primary: 'Poppins', sans-serif;
-  --font-secondary: 'Arvo', serif;
-  --font-code: 'Roboto', monospace;
+  --font-primary: "Poppins", sans-serif;
+  --font-secondary: "Arvo", serif;
+  --font-code: "Roboto", monospace;
   --bg-color: #00163f;
   --font-color: #ffffff;
   --btn-bg-color: #ffffff;
@@ -36,6 +36,12 @@ body {
   max-width: 960px;
   margin: 0 auto;
   padding: 1rem 2rem;
+}
+
+.container .align-left {
+  text-align: left;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 /* HEADER */
@@ -107,7 +113,7 @@ section {
 
 .countdown ul {
   display: flex;
-  gap: 2rem
+  gap: 2rem;
 }
 .countdown .clock-item {
   list-style: none;
@@ -180,4 +186,3 @@ section {
     font-size: 1rem;
   }
 }
- 
