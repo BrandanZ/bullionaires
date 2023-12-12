@@ -10,7 +10,19 @@ contract BrandanToken is ERC20Capped, ERC20Burnable {
     address payable public owner;
 
     constructor(uint256 cap) ERC20("Bullionaires", "BULL") ERC20Capped(cap * (10 ** decimals())) {
-        owner = msg.sender;
+        owner = payable(msg.sender);
         _mint(owner, 10000000000000 * (10 ** decimals()));
+    }
+
+    function _update(address from, address to, uint256 value) internal virtual override(ERC20Capped, ERC20) {
+        super._update(from, to, value);
+
+        if (from == address(0)) {
+            uint256 maxSupply = cap();
+            uint256 supply = totalSupply();
+            if (supply > maxSupply) {
+                revert ERC20ExceededCap(supply, maxSupply);
+            }
+        }
     }
 }
