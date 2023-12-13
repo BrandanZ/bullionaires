@@ -160,7 +160,27 @@ describe("BullToken contract", function () {
         console.log("Final BULL Token Balance:", finalBalance.toString())
 
         // Check if the final balance matches the expected balance
-        expect(finalBalance).to.be.at.least(expectedTokens)
+        expect(finalBalance).to.equal(expectedTokens)
+      })
+
+      it("should increase the contract's ETH balance by 0.1 ETH when buying tokens", async function () {
+        // Record the contract's ETH balance before the purchase
+        const initialEthBalance = await hre.ethers.provider.getBalance(
+          bullToken.target
+        )
+
+        // Perform the token purchase by sending 0.1 ETH
+        await bullToken
+          .connect(addr1)
+          .buyTokens(addr1.address, { value: ethToSend })
+
+        // Record the contract's ETH balance after the purchase
+        const finalEthBalance = await hre.ethers.provider.getBalance(
+          bullToken.target
+        )
+
+        // Check if the final balance matches the expected balance
+        expect(finalEthBalance).to.equal(ethToSend)
       })
     })
   })
