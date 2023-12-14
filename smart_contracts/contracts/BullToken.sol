@@ -28,9 +28,11 @@ contract BullToken is ERC20Capped, ERC20Burnable {
 
     // exchange rate: 1B BULL per 0.1 ETH
     uint256 public constant tokensPerEth = 10000000000;
+    uint256 public constant MinEthForBull = 100000000000000000;
 
     function buyTokens(address recipient) public payable {
         require(msg.value > 0, "You need to send some ETH");
+        require(msg.value > MinEthForBull, "You need to send at least 0.1 ETH");
         uint256 tokensToSend = (msg.value * tokensPerEth) / (10 ** decimals());
 
         //check if the contract has enough tokens to send
